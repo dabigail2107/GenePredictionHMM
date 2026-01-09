@@ -26,8 +26,7 @@ project_root/
 │ ├── train_out.fasta # Training set (DNA + annotation)
 │ ├── test_out.fasta # Test set (DNA only)
 │ ├── test_truth.fasta # Ground truth for test
-│ ├── test_predicted.fasta # Predicted states (batch)
-│ └── eval/ # Evaluation reports
+│ └── test_predicted.fasta # Predicted states (batch)
 └── README.md
 ```
 
