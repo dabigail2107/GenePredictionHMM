@@ -1,0 +1,65 @@
+{
+  "states": [
+    "cstart",
+    "cstartA",
+    "exon",
+    "exintron",
+    "accsite",
+    "accAlt",
+    "donsite",
+    "donAlt",
+    "intron",
+    "cstop",
+    "cstopA"
+  ],
+  "start_probs": {
+    "cstart": 200.0,
+    "cstartA": 0.0,
+    "exon": 0.0,
+    "exintron": 0.0,
+    "accsite": 0.0,
+    "accAlt": 0.0,
+    "donsite": 0.0,
+    "donAlt": 0.0,
+    "intron": 0.0,
+    "cstop": 0.0,
+    "cstopA": 0.0
+  },
+  "transition_probs": {
+    "cstart":   { "exon": 200.0 },
+    "cstartA":  { "exon": 120.0 },
+    "exon":     { "donsite": 140.0, "cstop": 25.0, "cstopA": 5.0 },
+    "exintron": { "donAlt": 100.0, "exon": 5.0, "cstopA": 10.0 },
+    "accsite":  { "exon": 200.0 },
+    "accAlt":   { "exon": 120.0, "exintron": 20.0 },
+    "donsite":  { "intron": 200.0 },
+    "donAlt":   { "intron": 200.0 },
+    "intron":   { "accsite": 180.0, "accAlt": 15.0 },
+    "cstop":    {},
+    "cstopA":   { "exon": 60.0, "exintron": 20.0, "donsite": 10.0, "intron": 10.0, "cstop": 10.0 }
+  },
+  "emission_probs": {
+    "motifs": {
+      "cstart":  { "k": 3, "beta": 220.0, "prior": { "ATG": 0.995, "*": 0.005 } },
+      "cstartA": { "k": 3, "beta": 120.0, "prior": { "ATG": 0.90,  "*": 0.10  } },
+      "accsite": { "k": 2, "beta": 180.0, "prior": { "AG": 0.97,  "*": 0.03  } },
+      "donsite": { "k": 2, "beta": 180.0, "prior": { "GT": 0.97,  "*": 0.03  } },
+      "accAlt":  { "k": 2, "beta": 60.0,  "prior": { "AG": 0.70, "AC": 0.15, "AT": 0.15 } },
+      "donAlt":  { "k": 2, "beta": 60.0,  "prior": { "GT": 0.70, "GC": 0.15, "AT": 0.15 } },
+      "cstop":   { "k": 3, "beta": 300.0, "prior": { "TAA": 0.60, "TAG": 0.25, "TGA": 0.15 } },
+      "cstopA":  { "k": 3, "beta": 120.0, "prior": { "TAA": 0.55, "TAG": 0.25, "TGA": 0.20 } }
+    },
+    "background": {
+      "order": 4,
+      "beta": 2.0,
+      "prior": {
+        "unigram": { "A": 0.25, "C": 0.25, "G": 0.25, "T": 0.25 }
+      }
+    }
+  },
+  "lengths": {
+    "exon":     { "dist": "geom", "gamma": 10.0, "mu0": 130.0,  "min": 150,  "max": 20000 },
+    "intron":   { "dist": "geom", "gamma": 10.0, "mu0": 3000.0, "min": 150,  "max": 500000 },
+    "exintron": { "dist": "geom", "gamma": 10.0, "mu0": 200.0,  "min": 120,  "max": 20000 }
+  }
+}

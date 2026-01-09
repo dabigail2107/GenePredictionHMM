@@ -1,0 +1,18 @@
+{
+  "states": ["cstart", "cstartA", "exon", "exintron", "accsite", "accAlt", "donsite", "donAlt", "intron", "cstop", "cstopA"],
+  "start_state": "cstart",
+  "end_state": "cstop",
+  "transitions": {
+    "cstart": ["exon"],
+    "exon": ["donsite", "cstartA", "cstop", "cstopA", "donAlt"],
+    "donsite": ["intron"],
+    "cstartA": ["exintron", "exon"],
+    "cstopA": ["intron"],
+    "intron": ["cstartA", "accAlt", "accsite"],
+    "exintron": ["cstartA", "donAlt", "cstopA", "donsite", "accAlt"],
+    "accAlt": ["exintron"],
+    "accsite": ["exon", "exintron"],
+    "donAlt": ["exintron"],
+    "cstop": []
+  }
+}
